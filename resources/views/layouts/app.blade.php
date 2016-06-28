@@ -1,79 +1,94 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
     <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <title>馋嘴猴卖友求逗干</title>
-
-    <!-- Fonts -->
-    <link rel="stylesheet" href="{{asset('css/font-awesome.min.css')}}" integrity="sha384-XdYbMnZ/QjLh6iI4ogqCTaIjrFk87ip+ekIjefZch0Y+PvJ8CDYtEs1ipDmPorQ+" crossorigin="anonymous">
-    <link rel="stylesheet" href="{{asset('css/lato.css')}}">
-
-    <!-- Styles -->
-    <link rel="stylesheet" href="{{asset('css/bootstrap.min.css')}}" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
-    {{-- <link href="{{ elixir('css/app.css') }}" rel="stylesheet"> --}}
-
-    <style>
-        body {
-            font-family: 'Lato';
-        }
-
-        .fa-btn {
-            margin-right: 6px;
-        }
-    </style>
-    <script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
-    <script src="http://wx.ompchina.net/resources/Scripts/weixinjssdk.js"></script>
-    <script type="text/javascript">
+    <meta name="format-detection" content="telephone=no"/>
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+    <meta http-equiv="x-ua-compatible" content="IE=edge" />
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+    <title>单挑肌肤BUG</title>
+    <link rel="stylesheet" href="{{asset('assets/css/common.css')}}">
+    <script>
         var shareData = {
             'title': '{{env("WECHAT_SHARE_TITLE")}}',
             'desc': '{{env("WECHAT_SHARE_DESC")}}',
-            'link': '{{env("APP_URL")}}',
-            'imgUrl': '{{env("APP_URL")}}'+'{{env("WECHAT_SHARE_IMG")}}'
+            'link': '{{url("/")}}',
+            'imgUrl': '{{ asset(env("WECHAT_SHARE_IMG"))}}'
         }
-        DATAForWeixin.debug = false; // 可设置为 true 以调试
-        DATAForWeixin.appId = '{{env("WECHAT_APPID")}}',//账号的appid//
-        DATAForWeixin.openid = '',
-        DATAForWeixin.sharecampaign = '{{env("WECHAT_CAMPAIGN_NAME")}}',//campaign名称
-
-        /* 请修改以下文字和图片，定制分享文案 */
-        DATAForWeixin.setTimeLine({
-            title: shareData.desc,
-            imgUrl: shareData.imgUrl,
-            link: shareData.link
-            //success:function(){}
-        });
-        DATAForWeixin.setAppMessage({
-            title: shareData.title,
-            desc: shareData.desc,
-            imgUrl: shareData.imgUrl,
-            link: shareData.link
-            //success:function(){}
-        });
-        DATAForWeixin.setQQ({
-            title: shareData.title,
-            desc: shareData.desc,
-            imgUrl: shareData.imgUrl,
-            link: shareData.link
-        });
-
+        function wxShare(data) {
+            /* 请修改以下文字和图片，定制分享文案 */
+            DATAForWeixin.setTimeLine({
+                title: data.title,
+                imgUrl: data.imgUrl,
+                link: data.link
+                //success:function(){}
+            });
+            DATAForWeixin.setAppMessage({
+                title: data.title,
+                desc: data.desc,
+                imgUrl: data.imgUrl,
+                link: data.link
+                //success:function(){}
+            });
+            DATAForWeixin.setQQ({
+                title: data.title,
+                desc: data.desc,
+                imgUrl: data.imgUrl,
+                link: data.link
+            });
+        }
     </script>
-    @yield('scripts')
+    <!--移动端版本兼容 -->
+    <script type="text/javascript">
+        var phoneWidth = parseInt(window.screen.width);
+        var phoneScale = phoneWidth / 640;
+        var ua = navigator.userAgent;
+        if (/Android (\d+\.\d+)/.test(ua)) {
+            var version = parseFloat(RegExp.$1);
+            if (version > 2.3) {
+                document.write('<meta name="viewport" content="width=640, minimum-scale = ' + phoneScale + ', maximum-scale = ' + phoneScale + ', target-densitydpi=device-dpi , user-scalable=no">');
+            } else {
+                document.write('<meta name="viewport" content="width=640, target-densitydpi=device-dpi , user-scalable=no">');
+            }
+        } else {
+            document.write('<meta name="viewport" content="width=640, minimum-scale=0.1, maximum-scale=1.0 , user-scalable=no" />');
+        }
+    </script>
+    <!--移动端版本兼容 end -->
 </head>
-<body id="app-layout">
-<nav class="navbar navbar-default navbar-static-top">
-    <div class="container">
-
-    </div>
-</nav>
-
+<body>
 @yield('content')
 
-        <!-- JavaScripts -->
-<script src="{{asset('js/jquery.min.js')}}" integrity="sha384-I6F5OKECLVtK/BL+8iSLDEHowSAfUo76ZL9+kGAgTRdiByINKJaqTPH/QVNS1VDb" crossorigin="anonymous"></script>
-<script src="{{asset('js/bootstrap.min.js')}}" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
-{{-- <script src="{{ elixir('js/app.js') }}"></script> --}}
+<script src="{{asset('assets/js/jquery-1.9.1.min.js')}}"></script>
+<script src="{{asset('assets/js/jquery.imgpreload.js')}}"></script>
+<script src="{{asset('assets/js/jquery.eraser.js')}}"></script>
+<script src="{{asset('assets/js/touch.js')}}"></script>
+<script src="{{asset('assets/js/common.js')}}"></script>
+<script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+<script src="http://wx.addechina.net/resources/Scripts/weixinjssdk.js"></script>
+@yield('scripts')
+<script>
+// 可设置为 true 以调试
+   DATAForWeixin.debug = false;
+   //账号的appid
+   DATAForWeixin.appId = '{{env("WECHAT_APPID")}}';
+   DATAForWeixin.openid = '';
+   DATAForWeixin.sharecampaign = '{{env("WECHAT_CAMPAIGN_NAME")}}';//campaign名称
+   wxShare(shareData)
+</script>
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?0f140859aee948a0688beea164bd6667";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+<audio src="{{asset('assets/images/bgm.mp3')}}" id="bgm" preload="auto" autoplay loop style="display:none; height:0;"></audio>
+<a href="javascript:void(0);" class="bmgBtn" onClick="bgmCon();"><img src="{{asset('assets/images/bgmBtn1.png')}}" class="bgm1"><img src="{{asset('assets/images/bgmBtn2.png')}}" class="bgm2" style="display:none;"></a>
 </body>
 </html>

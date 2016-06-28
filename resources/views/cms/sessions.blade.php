@@ -8,7 +8,7 @@
                 <!-- Start .page-content-inner -->
                 <div id="page-header" class="clearfix">
                     <div class="page-header">
-                        <h2>授权用户</h2>
+                        <h2>Session管理</h2>
                         <span class="txt"></span>
                     </div>
 
@@ -25,20 +25,20 @@
                                     <thead>
                                     <tr>
                                         <th>ID</th>
-                                            <th>头像</th>
-                                        <th>OPEN ID</th>
-                                        <th>昵称</th>
-                                        <th>授权时间</th>
+                                        <th width="60">用户ID</th>
+                                        <th>IP</th>
+                                        <th>代理信息</th>
+                                        <th>最后访问时间</th>
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    @foreach ($users as $user)
+                                    @foreach ($sessions as $session)
                                     <tr>
-                                        <td>{{ $user->id }}</td>
-                                        <td><img src="{{ $user->picurl }}" style="max-width:100px;max-height:100px;" /></td>
-                                        <td>{{ $user->openid }}</td>
-                                        <td>{{ $user->name }}</td>
-                                        <td>{{ $user->timestamp }}</td>
+                                        <td>{{$session->id}}</td>
+                                        <td>{{$session->user_id ?:'--'}}</td>
+                                        <td>{{$session->ip_address}}</td>
+                                        <td>{{$session->user_agent}}</td>
+                                        <td>{{date('Y-m-d H:i:s',$session->last_activity)}}</td>
                                     </tr>
                                     @endforeach
                                     </tbody>
@@ -46,7 +46,7 @@
                                 <div class="row">
                                     <div class="col-md-12 col-xs-12">
                                         <div class="dataTables_paginate paging_bootstrap" id="basic-datatables_paginate">
-                                            {!! $users->links() !!}
+                                            {!! $sessions->links() !!}
                                         </div>
                                     </div>
                                 </div>

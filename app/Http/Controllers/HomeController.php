@@ -17,8 +17,4 @@ class HomeController extends Controller
     {
         return view('welcome');
     }
-    public function lottery()
-    {
-        return;
-    }
 }

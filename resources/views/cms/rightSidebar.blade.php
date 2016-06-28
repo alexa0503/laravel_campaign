@@ -7,7 +7,7 @@
                 <!-- Start .rs tabs -->
                 <ul id="rstab" class="nav nav-tabs nav-justified">
                     <li class="active">
-                        <a href="blank.html#activity" data-toggle="tab"><i class="glyphicon glyphicon-bullhorn"></i> </a>
+                        <a href="#activity" data-toggle="tab"><i class="glyphicon glyphicon-bullhorn"></i> </a>
                     </li>
                     <!--<li>
                         <a href="blank.html#users" data-toggle="tab"><i class="fa fa-comments"></i> </a>

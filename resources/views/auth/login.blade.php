@@ -12,24 +12,24 @@
     <meta name="keywords" content="" />
     <meta name="application-name" content="" />
     <!-- Import google fonts - Heading first/ text second -->
-    <link href='{{asset ('css/font.css')}}' rel='stylesheet' type='text/css'>
+    <link href='{{asset('assets/cms/css/font.css')}}' rel='stylesheet' type='text/css'>
     <!-- Css files -->
     <!-- Icons -->
-    <link href="{{asset ('css/icons.css')}}" rel="stylesheet" />
+    <link href="{{asset('assets/cms/css/icons.css')}}" rel="stylesheet" />
     <!-- Bootstrap stylesheets (included template modifications) -->
-    <link href="{{asset ('css/bootstrap.css')}}" rel="stylesheet" />
+    <link href="{{asset('assets/cms/css/bootstrap.css')}}" rel="stylesheet" />
     <!-- Plugins stylesheets (all plugin custom css) -->
-    <link href="{{asset ('css/plugins.css')}}" rel="stylesheet" />
+    <link href="{{asset('assets/cms/css/plugins.css')}}" rel="stylesheet" />
     <!-- Main stylesheets (template main css file) -->
-    <link href="{{asset ('css/main.css')}}" rel="stylesheet" />
+    <link href="{{asset('assets/cms/css/main.css')}}" rel="stylesheet" />
     <!-- Custom stylesheets ( Put your own changes here ) -->
-    <link href="{{asset ('css/custom.css')}}" rel="stylesheet" />
+    <link href="{{asset('assets/cms/css/custom.css')}}" rel="stylesheet" />
     <!-- Fav and touch icons -->
-    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="{{asset ('img/ico/apple-touch-icon-144-precomposed.png')}}">
-    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="{{asset ('img/ico/apple-touch-icon-114-precomposed.png')}}">
-    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="{{asset ('img/ico/apple-touch-icon-72-precomposed.png')}}">
-    <link rel="apple-touch-icon-precomposed" href="{{asset ('img/ico/apple-touch-icon-57-precomposed.png')}}">
-    <link rel="icon" href="{{asset ('img/ico/favicon.ico')}}" type="image/png">
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="{{asset('assets/cms/img/ico/apple-touch-icon-144-precomposed.png')}}">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="{{asset('assets/cms/img/ico/apple-touch-icon-114-precomposed.png')}}">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="{{asset('assets/cms/img/ico/apple-touch-icon-72-precomposed.png')}}">
+    <link rel="apple-touch-icon-precomposed" href="{{asset('assets/cms/img/ico/apple-touch-icon-57-precomposed.png')}}">
+    <link rel="icon" href="{{asset('assets/cms/img/ico/favicon.ico')}}" type="image/png">
     <!-- Windows8 touch icon ( http://www.buildmypinnedsite.com/ )-->
     <meta name="msapplication-TileColor" content="#3399cc" />
 </head>
@@ -40,7 +40,7 @@
         <!-- Start .panel -->
         <div class="panel-heading">
             <h4 class="panel-title text-center">
-                <img id="logo" src="{{asset ('img/logo-dark.png')}}"alt="Dynamic logo">
+                <img id="logo" src="{{asset('assets/cms/img/logo-dark.png')}}"alt="Dynamic logo">
             </h4>
         </div>
         <div class="panel-body">
@@ -94,21 +94,21 @@
 </div>
 <!-- Javascripts -->
 <!-- Important javascript libs(put in all pages) -->
-<script src="{{asset('js/jquery-2.1.1.min.js')}}"></script>
-<script src="{{asset('js/jquery-ui.js')}}"></script>
+<script src="{{asset('assets/cms/js/jquery-2.1.1.min.js')}}"></script>
+<script src="{{asset('assets/cms/js/jquery-ui.js')}}"></script>
 
 <!--[if lt IE 9]>
-<script type="text/javascript" src="{{asset('js/libs/excanvas.min.js')}}"></script>
-<script type="text/javascript" src="{{asset('js/html5.js')}}"></script>
-<script type="text/javascript" src="{{asset('js/libs/respond.min.js')}}"></script>
+<script type="text/javascript" src="{{asset('assets/cms/js/libs/excanvas.min.js')}}"></script>
+<script type="text/javascript" src="{{asset('assets/cms/js/html5.js')}}"></script>
+<script type="text/javascript" src="{{asset('assets/cms/js/libs/respond.min.js')}}"></script>
 <![endif]-->
 <!-- Bootstrap plugins -->
-<script src="{{asset('js/bootstrap/bootstrap.js')}}"></script>
+<script src="{{asset('assets/cms/js/bootstrap/bootstrap.js')}}"></script>
 <!-- Form plugins -->
-<script src="{{asset('plugins/forms/validation/jquery.validate.js')}}"></script>
-<script src="{{asset('plugins/forms/validation/additional-methods.min.js')}}"></script>
+<script src="{{asset('assets/cms/plugins/forms/validation/jquery.validate.js')}}"></script>
+<script src="{{asset('assets/cms/plugins/forms/validation/additional-methods.min.js')}}"></script>
 <!-- Init plugins olny for this page -->
-<script src="{{asset('js/pages/login.js')}}"></script>
+<script src="{{asset('assets/cms/js/pages/login.js')}}"></script>
 
 </body>
 </html>

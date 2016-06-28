@@ -28,34 +28,55 @@ class CmsController extends Controller
      */
     public function index()
     {
-        $count = \App\WechatUser::count();
-        return view('cms/dashboard',['count' => $count]);
+        return view('cms.dashboard');
     }
 
-    /**
-     * 微信授权用户
-     * @return mixed
-     */
-    public function wechat()
-    {
-        $wechat_users = DB::table('wechat_users')->paginate(20);
-        return view('cms/wechat_user',['wechat_users' => $wechat_users]);
-    }
 
     /**
      * 账户管理
      */
-    public function users()
+    public function users($openid =null)
     {
-        $users = DB::table('users')->paginate(20);
-        return view('cms/users', ['users' => $users]);
+        if( null != $openid){
+            $users = DB::table('users')->where('openid',$openid)->paginate(20);
+        }
+        else{
+            $users = DB::table('users')->paginate(20);
+        }
+        return view('cms.users', ['users' => $users]);
+    }
+    public function voices($id = null)
+    {
+        if( null != $id){
+            $voices = DB::table('voice')->where('voice_id',$id)->paginate(20);
+        }
+        else{
+            $voices = DB::table('voice')->paginate(20);
+        }
+        return view('cms.voices', ['voices' => $voices]);
+    }
+    public function destroyVoice($id)
+    {
+        DB::table('voice')->where('id',$id)->delete();
+
+        return ['ret' => 0, 'msg' => ''];
+    }
+    public function infos()
+    {
+        $infos = DB::table('infos')->paginate(20);
+        return view('cms.infos', ['infos' => $infos]);
+    }
+    public function likes()
+    {
+        $likes = DB::table('likes')->paginate(20);
+        return view('cms.likes', ['likes' => $likes]);
     }
     /**
      *账户管理
      */
     public function account()
     {
-        return view('cms/account');
+        return view('cms.account');
     }
     public function accountPost(Requests\AccountFormRequest $request)
     {
@@ -63,42 +84,11 @@ class CmsController extends Controller
         $user = \App\User::find($request->user()->id);
         $user->password = bcrypt($request->input('password'));
         $user->save();
-        return redirect('cms/logout');
+        return redirect('cms.logout');
         //var_dump($request->input('password'));
     }
     public function userLogs()
     {
-        $logs = \App\UserLog::limit(30)->offset(0)->orderBy('create_time', 'DESC')->get();
-        return view('cms/userLogs',['logs' => $logs]);
-    }
-    public function wechatExport()
-    {
-        $filename = 'wechat'.date('YmdHis');
-        $collection = \App\WechatUser::all();
-        $data = $collection->map(function($item){
-            return [
-                $item->id,
-                $item->open_id,
-                json_decode($item->nick_name),
-                $item->head_img,
-                $item->gender,
-                $item->country,
-                $item->province,
-                $item->city,
-                $item->create_time,
-                $item->create_ip,
-            ];
-        });
-        Excel::create($filename, function($excel) use($data) {
-            $excel->setTitle('微信用户');
-            // Chain the setters
-            $excel->setCreator('Alexa');
-            // Call them separately
-            $excel->setDescription('A demonstration to change the file properties');
-            $excel->sheet('Sheet', function($sheet) use($data) {
-                $sheet->row(1, array('ID','openid','昵称','头像','性别','国家','省份','城市','授权时间','授权IP'));
-                $sheet->fromArray($data, null, 'A2', false, false);
-            });
-        })->download('xlsx');
+        return;
     }
 }

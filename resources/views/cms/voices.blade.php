@@ -25,20 +25,24 @@
                                     <thead>
                                     <tr>
                                         <th>ID</th>
-                                            <th>头像</th>
-                                        <th>OPEN ID</th>
-                                        <th>昵称</th>
-                                        <th>授权时间</th>
+                                        <th>声音地址</th>
+                                        <th>视频地址</th>
+                                        <th>点赞数</th>
+                                        <th>用户OPEN ID</th>
+                                        <th>创建时间</th>
+                                        <th>操作</th>
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    @foreach ($users as $user)
+                                    @foreach ($voices as $voice)
                                     <tr>
-                                        <td>{{ $user->id }}</td>
-                                        <td><img src="{{ $user->picurl }}" style="max-width:100px;max-height:100px;" /></td>
-                                        <td>{{ $user->openid }}</td>
-                                        <td>{{ $user->name }}</td>
-                                        <td>{{ $user->timestamp }}</td>
+                                        <td>{{ $voice->id }}</td>
+                                        <td><a href="http://voiceoflegend.choose1.net/voice/{{ $voice->voice_id }}.mp3" target="_blank">{{ $voice->voice_id }}</a></td>
+                                        <td><a href="http://voiceoflegend.choose1.net/voice/{{ $voice->video_id }}.mp4" target="_blank">{{ $voice->video_id }}</a></td>
+                                        <td>{{ $voice->likes }}</td>
+                                        <td><a href="{{url('cms/users',['openid'=>$voice->user_openid])}}">{{ $voice->user_openid }}</a></td>
+                                        <td>{{ $voice->timestamp }}</td>
+                                        <td><a class="btn btn-info btn-sm delete" href="{{url('cms/voice/delete',['id'=>$voice->id])}}">删除</a></td>
                                     </tr>
                                     @endforeach
                                     </tbody>
@@ -46,7 +50,7 @@
                                 <div class="row">
                                     <div class="col-md-12 col-xs-12">
                                         <div class="dataTables_paginate paging_bootstrap" id="basic-datatables_paginate">
-                                            {!! $users->links() !!}
+                                            {!! $voices->links() !!}
                                         </div>
                                     </div>
                                 </div>
@@ -61,4 +65,29 @@
         </div>
         <!-- / page-content-wrapper -->
     </div>
+@endsection
+@section('scripts')
+<script>
+$().ready(function(){
+    $('.delete').click(function(){
+        var url = $(this).attr('href');
+        var obj = $(this).parents('td').parent('tr');
+        if( confirm('该操作无法返回,是否继续?')){
+            $.ajax(url, {
+                dataType: 'json',
+                method: 'DELETE',
+                success: function(json){
+                    if(json.ret == 0){
+                        obj.remove();
+                    }
+                },
+                error: function(){
+                    alert('请求失败~');
+                }
+            });
+        }
+        return false;
+    })
+})
+</script>
 @endsection

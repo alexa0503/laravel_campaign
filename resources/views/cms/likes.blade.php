@@ -25,20 +25,18 @@
                                     <thead>
                                     <tr>
                                         <th>ID</th>
-                                            <th>头像</th>
-                                        <th>OPEN ID</th>
-                                        <th>昵称</th>
-                                        <th>授权时间</th>
+                                        <th>用户OPEN ID</th>
+                                        <th>声频 ID</th>
+                                        <th>创建时间</th>
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    @foreach ($users as $user)
+                                    @foreach ($likes as $like)
                                     <tr>
-                                        <td>{{ $user->id }}</td>
-                                        <td><img src="{{ $user->picurl }}" style="max-width:100px;max-height:100px;" /></td>
-                                        <td>{{ $user->openid }}</td>
-                                        <td>{{ $user->name }}</td>
-                                        <td>{{ $user->timestamp }}</td>
+                                        <td>{{ $like->id }}</td>
+                                        <td><a href="{{ url('cms/users',['openid'=>$like->user_openid]) }}">{{ $like->user_openid }}</a></td>
+                                        <td><a href="{{ url('cms/voices',['id'=>$like->voice_id]) }}">{{ $like->voice_id }}</a></td>
+                                        <td>{{ $like->timestamp }}</td>
                                     </tr>
                                     @endforeach
                                     </tbody>
@@ -46,7 +44,7 @@
                                 <div class="row">
                                     <div class="col-md-12 col-xs-12">
                                         <div class="dataTables_paginate paging_bootstrap" id="basic-datatables_paginate">
-                                            {!! $users->links() !!}
+                                            {!! $likes->links() !!}
                                         </div>
                                     </div>
                                 </div>
@@ -61,4 +59,29 @@
         </div>
         <!-- / page-content-wrapper -->
     </div>
+@endsection
+@section('scripts')
+<script>
+$().ready(function(){
+    $('.delete').click(function(){
+        var url = $(this).attr('href');
+        var obj = $(this).parents('td').parent('tr');
+        if( confirm('该操作无法返回,是否继续?')){
+            $.ajax(url, {
+                dataType: 'json',
+                method: 'DELETE',
+                success: function(json){
+                    if(json.ret == 0){
+                        obj.remove();
+                    }
+                },
+                error: function(){
+                    alert('请求失败~');
+                }
+            });
+        }
+        return false;
+    })
+})
+</script>
 @endsection

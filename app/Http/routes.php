@@ -1,16 +1,4 @@
 <?php
-
-/*
-Route::group(['middleware' => ['web','wechat.oauth']], function () {
-    Route::get('/user', function () {
-        $user = session('wechat.oauth_user'); // 拿到授权用户资料
-        dd($user);
-    });
-    //Route::get('/', 'HomeController@index');
-});
-Route::any('/wechat', 'WechatController@serve');
-*/
-Route::get('/', 'HomeController@index');
 /*
 |--------------------------------------------------------------------------
 | Application Routes
@@ -27,21 +15,36 @@ Route::get('cms/login', 'Auth\AuthController@getLogin');
 Route::post('cms/login', 'Auth\AuthController@postLogin');
 Route::get('cms/logout', 'Auth\AuthController@logout');
 //屏蔽注册路由
-Route::any('/register', function(){
+Route::any('register', function(){
 
 });
 //Route::get('/register', 'Auth\AuthController@getRegister');
 //Route::post('/register', 'Auth\AuthController@postRegister');
 
-Route::get('/home', 'HomeController@index');
-Route::get('/cms', 'CmsController@index');
-Route::get('/cms/users', 'CmsController@users');
-Route::get('/cms/account', 'CmsController@account');
-Route::post('/cms/account', 'CmsController@accountPost');
-Route::get('/cms/wechat', 'CmsController@wechat');
-Route::get('/cms/user/logs', 'CmsController@userLogs');
-Route::get('/cms/wechat/export', 'CmsController@wechatExport');
+Route::get('/', 'CmsController@index');
+Route::get('cms', 'CmsController@index');
+Route::get('cms/users', 'CmsController@users');
+Route::get('cms/users/{openid}', 'CmsController@users');
+Route::get('cms/voices', 'CmsController@voices');
+Route::get('cms/voices/{id}', 'CmsController@voices');
+Route::delete('cms/voice/delete/{id}', 'CmsController@destroyVoice');
+Route::get('cms/infos', 'CmsController@infos');
+Route::get('cms/likes', 'CmsController@likes');
+Route::get('cms/account', 'CmsController@account');
+Route::post('cms/account', 'CmsController@accountPost');
 
-//wechat auth
-Route::any('/wechat/auth', 'WechatController@auth');
-Route::any('/wechat/callback', 'WechatController@callback');
+Route::get('cms/user/logs', function(){
+    return;
+});
+//初始化后台帐号
+Route::get('cms/account/install', function () {
+    if (0 == \App\Admin::count()) {
+        $user = new \App\Admin();
+        $user->name = 'admin';
+        $user->email = 'admin@admin.com';
+        $user->password = bcrypt('admin123');
+        $user->save();
+    }
+
+    return redirect('/');
+});

@@ -12,25 +12,26 @@
     <meta name="description" content="" />
     <meta name="keywords" content="" />
     <meta name="application-name" content="" />
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <!-- Import google fonts - Heading first/ text second -->
-    <link href='{{asset('css/font.css')}}' rel='stylesheet' type='text/css'>
+    <link href="{{asset('assets/cms/css/font.css')}}" rel='stylesheet' type='text/css'>
     <!-- Css files -->
     <!-- Icons -->
-    <link href="{{asset('css/icons.css')}}" rel="stylesheet" />
+    <link href="{{asset('assets/cms/css/icons.css')}}" rel="stylesheet" />
     <!-- Bootstrap stylesheets (included template modifications) -->
-    <link href="{{asset('css/bootstrap.css')}}" rel="stylesheet" />
+    <link href="{{asset('assets/cms/css/bootstrap.css')}}" rel="stylesheet" />
     <!-- Plugins stylesheets (all plugin custom css) -->
-    <link href="{{asset('css/plugins.css')}}" rel="stylesheet" />
+    <link href="{{asset('assets/cms/css/plugins.css')}}" rel="stylesheet" />
     <!-- Main stylesheets (template main css file) -->
-    <link href="{{asset('css/main.css')}}" rel="stylesheet" />
+    <link href="{{asset('assets/cms/css/main.css')}}" rel="stylesheet" />
     <!-- Custom stylesheets ( Put your own changes here ) -->
-    <link href="{{asset('css/custom.css')}}" rel="stylesheet" />
+    <link href="{{asset('assets/cms/css/custom.css')}}" rel="stylesheet" />
     <!-- Fav and touch icons -->
-    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="{{asset('img/ico/apple-touch-icon-144-precomposed.png')}}">
-    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="{{asset('img/ico/apple-touch-icon-114-precomposed.png')}}">
-    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="{{asset('img/ico/apple-touch-icon-72-precomposed.png')}}">
-    <link rel="apple-touch-icon-precomposed" href="{{asset('img/ico/apple-touch-icon-57-precomposed.png')}}">
-    <link rel="icon" href="{{asset('img/ico/favicon.ico" type="image/png')}}">
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="{{asset('assets/cms/img/ico/apple-touch-icon-144-precomposed.png')}}">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="{{asset('assets/cms/img/ico/apple-touch-icon-114-precomposed.png')}}">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="{{asset('assets/cms/img/ico/apple-touch-icon-72-precomposed.png')}}">
+    <link rel="apple-touch-icon-precomposed" href="{{asset('assets/cms/img/ico/apple-touch-icon-57-precomposed.png')}}">
+    <link rel="icon" href="{{asset('assets/cms/img/ico/favicon.ico" type="image/png')}}">
     <!-- Windows8 touch icon ( http://www.buildmypinnedsite.com/ )-->
     <meta name="msapplication-TileColor" content="#3399cc" />
 </head>
@@ -61,44 +62,59 @@
 </div>
 <!-- Javascripts -->
 <!-- Load pace first -->
-<script src="{{asset('plugins/core/pace/pace.min.js')}}"></script>
+<script src="{{asset('assets/cms/plugins/core/pace/pace.min.js')}}"></script>
 <!-- Important javascript libs(put in all pages) -->
-<script src="{{asset('js/jquery-2.1.1.min.js')}}"></script>
-<script src="{{asset('js/jquery-ui.js')}}"></script>
+<script src="{{asset('assets/cms/js/jquery-2.1.1.min.js')}}"></script>
+<script src="{{asset('assets/cms/js/jquery-ui.js')}}"></script>
 <!--[if lt IE 9]>
-<script type="text/javascript" src="{{asset('js/libs/excanvas.min.js')}}"></script>
-<script type="text/javascript" src="{{asset('js/html5.js')}}"></script>
-<script type="text/javascript" src="{{asset('js/libs/respond.min.js')}}"></script>
+<script type="text/javascript" src="{{asset('assets/cms/js/libs/excanvas.min.js')}}"></script>
+<script type="text/javascript" src="{{asset('assets/cms/js/html5.js')}}"></script>
+<script type="text/javascript" src="{{asset('assets/cms/js/libs/respond.min.js')}}"></script>
 <![endif]-->
 <!-- Bootstrap plugins -->
-<script src="{{asset('js/bootstrap/bootstrap.js')}}"></script>
+<script src="{{asset('assets/cms/js/bootstrap/bootstrap.js')}}"></script>
 <!-- Core plugins ( not remove ) -->
-<script src="{{asset('js/libs/modernizr.custom.js')}}"></script>
+<script src="{{asset('assets/cms/js/libs/modernizr.custom.js')}}"></script>
 <!-- Handle responsive view functions -->
-<script src="{{asset('js/jRespond.min.js')}}"></script>
+<script src="{{asset('assets/cms/js/jRespond.min.js')}}"></script>
 <!-- Custom scroll for sidebars,tables and etc. -->
-<script src="{{asset('plugins/core/slimscroll/jquery.slimscroll.min.js')}}"></script>
-<script src="{{asset('plugins/core/slimscroll/jquery.slimscroll.horizontal.min.js')}}"></script>
+<script src="{{asset('assets/cms/plugins/core/slimscroll/jquery.slimscroll.min.js')}}"></script>
+<script src="{{asset('assets/cms/plugins/core/slimscroll/jquery.slimscroll.horizontal.min.js')}}"></script>
 <!-- Remove click delay in touch -->
-<script src="{{asset('plugins/core/fastclick/fastclick.js')}}"></script>
+<script src="{{asset('assets/cms/plugins/core/fastclick/fastclick.js')}}"></script>
 <!-- Increase jquery animation speed -->
-<script src="{{asset('plugins/core/velocity/jquery.velocity.min.js')}}"></script>
+<script src="{{asset('assets/cms/plugins/core/velocity/jquery.velocity.min.js')}}"></script>
 <!-- Quick search plugin (fast search for many widgets) -->
-<script src="{{asset('plugins/core/quicksearch/jquery.quicksearch.js')}}"></script>
+<script src="{{asset('assets/cms/plugins/core/quicksearch/jquery.quicksearch.js')}}"></script>
 <!-- Bootbox fast bootstrap modals -->
-<script src="{{asset('plugins/ui/bootbox/bootbox.js')}}"></script>
+<script src="{{asset('assets/cms/plugins/ui/bootbox/bootbox.js')}}"></script>
 <!-- Other plugins ( load only nessesary plugins for every page) -->
-<script src="{{asset('plugins/charts/sparklines/jquery.sparkline.js')}}"></script>
-<script src="{{asset('js/jquery.dynamic.js')}}"></script>
-<script src="{{asset('js/main.js')}}"></script>
-<script src="{{asset('js/pages/blank.js')}}"></script>
+<script src="{{asset('assets/cms/plugins/charts/sparklines/jquery.sparkline.js')}}"></script>
+<script src="{{asset('assets/cms/js/jquery.dynamic.js')}}"></script>
+<script src="{{asset('assets/cms/plugins/forms/bootstrap-timepicker/bootstrap-timepicker.js')}}"></script>
+<script src="{{asset('assets/cms/plugins/forms/bootstrap-filestyle/bootstrap-filestyle.js')}}"></script>
+<script src="{{asset('assets/cms/js/jquery.form.js')}}"></script>
+
+<script src="{{asset('assets/cms/js/main.js')}}"></script>
+<script src="{{asset('assets/cms/js/pages/blank.js')}}"></script>
 @yield('scripts')
 <script>
     $().ready(function () {
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
         $.get('/cms/user/logs',function (data) {
             $('#userLogs').html(data);
-        })
+        });
+        $('.side-nav .nav li ul li').each(function(){
+            if( $(this).find('a').hasClass('active')){
+                $(this).parent('ul').addClass('show');
+                $(this).parent('ul').parent('li').find('a').eq(0).addClass('expand').addClass('active-state');
+            }
 
+        });
     })
 </script>
 </body>

@@ -1,8 +1,8 @@
 <div id="header" class="page-navbar">
     <!-- .navbar-brand -->
-    <a href="index.html" class="navbar-brand hidden-xs hidden-sm">
-        <img src="{{asset('img/logo.png')}}" class="logo hidden-xs" alt="O.M.P.">
-        <img src="{{asset('img/logosm.png')}}" class="logo-sm hidden-lg hidden-md" alt="O.M.P.">
+    <a href="{{url('cms')}}" class="navbar-brand hidden-xs hidden-sm">
+        <img src="{{asset('assets/cms/img/logo.png')}}" class="logo hidden-xs" alt="O.M.P.">
+        <img src="{{asset('assets/cms/img/logosm.png')}}" class="logo-sm hidden-lg hidden-md" alt="O.M.P.">
     </a>
     <!-- / navbar-brand -->
     <!-- .no-collapse -->

@@ -8,7 +8,7 @@
                 <!-- Start .page-content-inner -->
                 <div id="page-header" class="clearfix">
                     <div class="page-header">
-                        <h2>授权用户</h2>
+                        <h2>账户管理</h2>
                         <span class="txt"></span>
                     </div>
 
@@ -25,20 +25,20 @@
                                     <thead>
                                     <tr>
                                         <th>ID</th>
-                                            <th>头像</th>
-                                        <th>OPEN ID</th>
-                                        <th>昵称</th>
-                                        <th>授权时间</th>
+                                        <th>账户名</th>
+                                        <th>Email</th>
+                                        <th>创建时间</th>
+                                        <th>更新时间</th>
                                     </tr>
                                     </thead>
                                     <tbody>
                                     @foreach ($users as $user)
                                     <tr>
                                         <td>{{ $user->id }}</td>
-                                        <td><img src="{{ $user->picurl }}" style="max-width:100px;max-height:100px;" /></td>
-                                        <td>{{ $user->openid }}</td>
                                         <td>{{ $user->name }}</td>
-                                        <td>{{ $user->timestamp }}</td>
+                                        <td>{{ $user->email }}</td>
+                                        <td>{{ $user->created_at }}</td>
+                                        <td>{{ $user->updated_at }}</td>
                                     </tr>
                                     @endforeach
                                     </tbody>

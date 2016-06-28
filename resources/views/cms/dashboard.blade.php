@@ -13,8 +13,6 @@
                     </div>
                     <div class="header-stats">
                         <div class="spark clearfix">
-                            <div class="spark-info"><span class="number">{{$count}}</span>微信用户</div>
-                            <div id="spark-visitors" class="sparkline"></div>
                         </div>
                         <!--<div class="spark clearfix">
                             <div class="spark-info"><span class="number">17345</span>Views</div>
