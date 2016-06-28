@@ -109,6 +109,10 @@ $().ready(function(){
             $("#audio").get(0).pause();
         }
     })
+    $('.close').click(function(){
+        $("#video").get(0).pause();
+        $("#audio").get(0).pause();
+    })
     $('.delete').click(function(){
         var url = $(this).attr('href');
         var obj = $(this).parents('td').parent('tr');
