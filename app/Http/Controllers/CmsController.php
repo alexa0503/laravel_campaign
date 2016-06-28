@@ -51,7 +51,9 @@ class CmsController extends Controller
             $voices = DB::table('voice')->where('voice_id',$id)->paginate(20);
         }
         else{
-            $voices = DB::table('voice')->paginate(20);
+            $voices = DB::table('voice')
+            ->join('users','voice.user_openid', '=', 'users.openid')
+            ->paginate(20);
         }
         return view('cms.voices', ['voices' => $voices]);
     }

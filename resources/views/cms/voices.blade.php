@@ -26,7 +26,8 @@
                                     <tr>
                                         <th>ID</th>
                                         <th>视频</th>
-                                        <th>视频控制</th>
+                                        <th>昵称</th>
+                                        <th>头像</th>
                                         <th>点赞数</th>
                                         <th>用户OPEN ID</th>
                                         <th>创建时间</th>
@@ -39,15 +40,16 @@
                                         <td>{{ $voice->id }}</td>
                                         <td>
                                             <audio id="audio_{{ $voice->voice_id }}" src="http://voiceoflegend.choose1.net/voice/{{ $voice->voice_id }}.mp3" preload="auto"></audio>
-                                            <video id="video_{{ $voice->voice_id }}" src="http://voiceoflegend.choose1.net/video/demo_{{ $voice->video_id }}.mp4" width="320" height="240" preload="auto">Your browser does not support the video tag.</video></td>
-                                            <td>
-                                                <a class="btn btn-warning btn-sm play" data-id="{{ $voice->voice_id }}" href="javascript:;">播放</a>
-                                                <a class="btn btn-warning btn-sm pause" data-id="{{ $voice->voice_id }}" href="javascript:;">停止</a>
-                                            </td>
+                                            <video id="video_{{ $voice->voice_id }}" src="http://voiceoflegend.choose1.net/video/demo_{{ $voice->video_id }}.mp4" width="320" height="180">Your browser does not support the video tag.</video></td>
+                                            <td>{{ $voice->name }}</td>
+                                            <td><img src="{{ $voice->picurl }}" style="max-width:100px;max-height:100px;" /></td>
+
                                         <td>{{ $voice->likes }}</td>
                                         <td><a href="{{url('cms/users',['openid'=>$voice->user_openid])}}">{{ $voice->user_openid }}</a></td>
                                         <td>{{ $voice->timestamp }}</td>
                                         <td>
+                                            <a class="btn btn-warning btn-sm play" data-id="{{ $voice->voice_id }}" href="javascript:;">播放</a>
+                                            <br/></br/>
                                             <a class="btn btn-info btn-sm delete" href="{{url('cms/voice/delete',['id'=>$voice->id])}}">删除</a></td>
                                     </tr>
                                     @endforeach
@@ -77,13 +79,16 @@
 $().ready(function(){
     $('.play').click(function(){
         var id = $(this).attr('data-id');
-        $("#video_"+id).get(0).play();
-        $("#audio_"+id).get(0).play();
-    })
-    $('.pause').click(function(){
-        var id = $(this).attr('data-id');
-        $("#video_"+id).get(0).pause();
-        $("#audio_"+id).get(0).pause();
+        if( $(this).text() == '播放'){
+            $(this).text('暂停');
+            $("#video_"+id).get(0).play();
+            $("#audio_"+id).get(0).play();
+        }
+        else{
+            $(this).text('播放');
+            $("#video_"+id).get(0).pause();
+            $("#audio_"+id).get(0).pause();
+        }
     })
     $('.delete').click(function(){
         var url = $(this).attr('href');
