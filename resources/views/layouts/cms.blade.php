@@ -94,6 +94,7 @@
 <script src="{{asset('assets/cms/plugins/forms/bootstrap-timepicker/bootstrap-timepicker.js')}}"></script>
 <script src="{{asset('assets/cms/plugins/forms/bootstrap-filestyle/bootstrap-filestyle.js')}}"></script>
 <script src="{{asset('assets/cms/js/jquery.form.js')}}"></script>
+<script src="{{asset('assets/cms/plugins/ui/bootbox/bootbox.js')}}"></script>
 
 <script src="{{asset('assets/cms/js/main.js')}}"></script>
 <script src="{{asset('assets/cms/js/pages/blank.js')}}"></script>

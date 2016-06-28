@@ -38,16 +38,14 @@
                                     <tr>
                                         <td>{{ $voice->id }}</td>
                                         <td>
-                                            <audio id="audio_{{ $voice->voice_id }}" src="http://voiceoflegend.choose1.net/voice/{{ $voice->voice_id }}.mp3" preload="auto"></audio>
-                                            <video id="video_{{ $voice->voice_id }}" src="http://voiceoflegend.choose1.net/video/demo_{{ $voice->video_id }}.mp4" width="320" height="180">Your browser does not support the video tag.</video></td>
-                                            <td>{{ $voice->name }}</td>
-                                            <td><img src="{{ $voice->picurl }}" style="max-width:100px;max-height:100px;" /></td>
+                                            <button class="btn btn-default mr5 mb10 video" data-toggle="modal" data-target="#videoModal" data-audio="http://voiceoflegend.choose1.net/voice/{{ $voice->voice_id }}.mp3" data-video="http://voiceoflegend.choose1.net/video/demo_{{ $voice->video_id }}.mp4">查看视频</button>
+                                        </td>
+                                        <td>{{ $voice->name }}</td>
+                                        <td><img src="{{ $voice->picurl }}" style="max-width:100px;max-height:100px;" /></td>
 
                                         <td>{{ $voice->likes }}</td>
                                         <td>{{ $voice->timestamp }}</td>
                                         <td>
-                                            <a class="btn btn-warning btn-sm play" data-id="{{ $voice->voice_id }}" href="javascript:;">播放</a>
-                                            <br/></br/>
                                             <a class="btn btn-info btn-sm delete" href="{{url('cms/voice/delete',['id'=>$voice->id])}}">删除</a></td>
                                     </tr>
                                     @endforeach
@@ -71,21 +69,44 @@
         </div>
         <!-- / page-content-wrapper -->
     </div>
+    <!-- Video Modal -->
+                    <div class="modal fade" id="videoModal" tabindex="-1" role="dialog" aria-labelledby="videoModal" aria-hidden="true">
+                        <div class="modal-dialog" style="width:640px;">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal">
+                                        <span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+                                    </button>
+                                    <h4 class="modal-title" id="myModalLabel2">视频</h4>
+                                </div>
+                                <div class="modal-body">
+                                    <div id="play-block" data-status="paused">
+                                        <audio id="audio" src="" preload="auto"></audio>
+                                        <video id="video" src="" width="600" height="360">Your browser does not support the video tag.</video>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 @endsection
 @section('scripts')
 <script>
+
 $().ready(function(){
-    $('.play').click(function(){
-        var id = $(this).attr('data-id');
-        if( $(this).text() == '播放'){
-            $(this).text('暂停');
-            $("#video_"+id).get(0).play();
-            $("#audio_"+id).get(0).play();
+    $('.video').click(function(){
+        $('#audio').attr('src', $(this).attr('data-audio'));
+        $('#video').attr('src', $(this).attr('data-video'));
+    })
+    $('#play-block').click(function(){
+        if( $(this).attr('data-status') == 'paused'){
+            $(this).attr('data-status','play');
+            $("#video").get(0).play();
+            $("#audio").get(0).play();
         }
         else{
-            $(this).text('播放');
-            $("#video_"+id).get(0).pause();
-            $("#audio_"+id).get(0).pause();
+            $(this).attr('data-status','paused');
+            $("#video").get(0).pause();
+            $("#audio").get(0).pause();
         }
     })
     $('.delete').click(function(){
