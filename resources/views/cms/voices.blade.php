@@ -82,7 +82,7 @@
                                 <div class="modal-body">
                                     <div id="play-block" data-status="paused">
                                         <audio id="audio" src="" preload="auto"></audio>
-                                        <video id="video" src="" width="600" height="360">Your browser does not support the video tag.</video>
+                                        <video id="video" src="" width="600" height="360" preload="auto">Your browser does not support the video tag.</video>
                                     </div>
                                 </div>
                             </div>
