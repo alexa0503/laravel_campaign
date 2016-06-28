@@ -29,7 +29,6 @@
                                         <th>昵称</th>
                                         <th>头像</th>
                                         <th>点赞数</th>
-                                        <th>用户OPEN ID</th>
                                         <th>创建时间</th>
                                         <th>操作</th>
                                     </tr>
@@ -45,7 +44,6 @@
                                             <td><img src="{{ $voice->picurl }}" style="max-width:100px;max-height:100px;" /></td>
 
                                         <td>{{ $voice->likes }}</td>
-                                        <td><a href="{{url('cms/users',['openid'=>$voice->user_openid])}}">{{ $voice->user_openid }}</a></td>
                                         <td>{{ $voice->timestamp }}</td>
                                         <td>
                                             <a class="btn btn-warning btn-sm play" data-id="{{ $voice->voice_id }}" href="javascript:;">播放</a>

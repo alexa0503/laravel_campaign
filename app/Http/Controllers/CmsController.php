@@ -53,6 +53,7 @@ class CmsController extends Controller
         else{
             $voices = DB::table('voice')
             ->join('users','voice.user_openid', '=', 'users.openid')
+            ->select('voice.id', 'voice.voice_id', 'voice.video_id', 'voice.likes', 'voice.timestamp', 'users.name', 'users.picurl')
             ->paginate(20);
         }
         return view('cms.voices', ['voices' => $voices]);
