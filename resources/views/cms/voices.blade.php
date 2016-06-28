@@ -25,8 +25,8 @@
                                     <thead>
                                     <tr>
                                         <th>ID</th>
-                                        <th>声音地址</th>
-                                        <th>视频地址</th>
+                                        <th>视频</th>
+                                        <th>视频控制</th>
                                         <th>点赞数</th>
                                         <th>用户OPEN ID</th>
                                         <th>创建时间</th>
@@ -37,12 +37,18 @@
                                     @foreach ($voices as $voice)
                                     <tr>
                                         <td>{{ $voice->id }}</td>
-                                        <td><a href="http://voiceoflegend.choose1.net/voice/{{ $voice->voice_id }}.mp3" target="_blank">{{ $voice->voice_id }}</a></td>
-                                        <td><a href="http://voiceoflegend.choose1.net/voice/{{ $voice->video_id }}.mp4" target="_blank">{{ $voice->video_id }}</a></td>
+                                        <td>
+                                            <audio id="audio_{{ $voice->voice_id }}" src="http://voiceoflegend.choose1.net/voice/{{ $voice->voice_id }}.mp3" preload="auto"></audio>
+                                            <video id="video_{{ $voice->voice_id }}" src="http://voiceoflegend.choose1.net/video/demo_{{ $voice->video_id }}.mp4" width="320" height="240" preload="auto">Your browser does not support the video tag.</video></td>
+                                            <td>
+                                                <a class="btn btn-warning btn-sm play" data-id="{{ $voice->voice_id }}" href="javascript:;">播放</a>
+                                                <a class="btn btn-warning btn-sm pause" data-id="{{ $voice->voice_id }}" href="javascript:;">停止</a>
+                                            </td>
                                         <td>{{ $voice->likes }}</td>
                                         <td><a href="{{url('cms/users',['openid'=>$voice->user_openid])}}">{{ $voice->user_openid }}</a></td>
                                         <td>{{ $voice->timestamp }}</td>
-                                        <td><a class="btn btn-info btn-sm delete" href="{{url('cms/voice/delete',['id'=>$voice->id])}}">删除</a></td>
+                                        <td>
+                                            <a class="btn btn-info btn-sm delete" href="{{url('cms/voice/delete',['id'=>$voice->id])}}">删除</a></td>
                                     </tr>
                                     @endforeach
                                     </tbody>
@@ -69,6 +75,16 @@
 @section('scripts')
 <script>
 $().ready(function(){
+    $('.play').click(function(){
+        var id = $(this).attr('data-id');
+        $("#video_"+id).get(0).play();
+        $("#audio_"+id).get(0).play();
+    })
+    $('.pause').click(function(){
+        var id = $(this).attr('data-id');
+        $("#video_"+id).get(0).pause();
+        $("#audio_"+id).get(0).pause();
+    })
     $('.delete').click(function(){
         var url = $(this).attr('href');
         var obj = $(this).parents('td').parent('tr');
