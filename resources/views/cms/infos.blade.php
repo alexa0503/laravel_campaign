@@ -35,8 +35,8 @@
                                     <tr>
                                     <td><a href="{{url('cms/users',['openid'=>$info->openid])}}">{{ $info->openid }}</a></td>
                                         <td>{{ $info->name }}</td>
+                                        <td>{{ $info->mobile }}</td>
                                         <td>{{ $info->qq }}</td>
-                                        <td>{{ $info->created_at }}</td>
                                         <td>{{ $info->created_at }}</td>
                                     </tr>
                                     @endforeach
