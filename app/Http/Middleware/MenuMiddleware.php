@@ -16,45 +16,20 @@ class MenuMiddleware
      */
     public function handle($request, Closure $next)
     {
-        Menu::make('homeNavbar', function($menu){
-            $menu->add(trans('messages.menu.home'),['route'=>'home']);
-            $products = $menu->add(trans('messages.menu.products'),'#');
-            $product_types = App\ProductType::all();
-            foreach( $product_types as $type){
-                $products->add($type->title, route('product.index',['type'=>$type->id ]));
-            }
-            $menu->add(trans('messages.menu.about_us'), ['route'=>'page.about']);
-            $menu->add(trans('messages.menu.hand_made'), ['route'=>'page.hand']);
-            $menu->add(trans('messages.menu.press'), ['route'=>'presses']);
-            $menu->add(trans('messages.menu.wholesale'), ['route'=>'page.wholesale']);
-            $menu->add(trans('messages.menu.contact_us'), ['route'=>'page.contact']);
-        });
         Menu::make('adminNavbar', function($menu){
             $menu->add('控制面板',['route'=>'admin_dashboard'])->divide();
 
-            $order_item = $menu->add('订单管理', '#')->divide();
-            $order_item->add('待发货订单', route('admin.order.index',['status'=>1]));
-            $order_item->add('待完成订单', route('admin.order.index',['status'=>2]));
-            $order_item->add('查看所有', route('admin.order.index'));
+            $province = $menu->add('省份管理', '#');
+            $province->add('查看', route('admin.province.index'));
+            $province->add('添加', route('admin.province.create'));
 
-            $product_type_item = $menu->add('产品分类', '#');
-            $product_type_item->add('查看', route('admin.products.type.index'));
-            $product_type_item->add('添加', route('admin.products.type.create'));
+            $city = $menu->add('城市管理', '#');
+            $city->add('查看', route('admin.city.index'));
+            $city->add('添加', route('admin.city.create'));
 
-            $product_item = $menu->add('产品管理', '#')->divide();
-            $product_item->add('查看', route('admin.product.index'));
-            $product_item->add('添加', route('admin.product.create'));
-
-
-            $page_item = $menu->add('页面管理', '#');
-            $pages = App\Page::all();
-            $pages->each(function($page,$key) use($page_item){
-                $page_item->add($page->title, ['url'=>route('admin.page.edit',['id'=>$page->id])]);
-            });
-
-            $press_item = $menu->add('媒体管理', '#');
-            $press_item->add('查看', route('admin.press.index'));
-            $press_item->add('添加', route('admin.press.create'));
+            $store = $menu->add('店铺管理', '#');
+            $store->add('查看', route('admin.store.index'));
+            $store->add('添加', route('admin.store.create'));
 
             //$page->add('查看', 'page/view');
             //$menu->add('账户',['route'=>'admin_account']);

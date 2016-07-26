@@ -14,8 +14,12 @@ app/storage/
 bootstrap/cache/
 storage/
 public/storage
-public/qrcodes
+public/sp
+public/shops
+public/shop_info
+public/filemanager
+public/uploads
+public/vendor
 .env.*.php
 .env.php
 .env
-
