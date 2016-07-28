@@ -14,9 +14,6 @@ app/storage/
 bootstrap/cache/
 storage/
 public/storage
-public/sp
-public/shops
-public/shop_info
 public/filemanager
 public/uploads
 public/vendor
