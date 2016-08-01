@@ -39,7 +39,7 @@
                                             <div class="dd3-content">{{$city->title}}</div>
                                             <ol class="dd-list">
                                                 @foreach ($city->stores as $store)
-                                                <li class="dd-item dd3-item" data-id="16">
+                                                <li class="dd-item dd3-item" data-id="{{$store->id}}">
                                                     <div class="dd-handle dd3-handle">Drag</div>
                                                     <div class="dd3-content">{{$store->title}}
                                                         <div class="pull-right"><a href="{{route('admin.store.edit',['id'=>$store->id])}}" class="btn btn-xs btn-link">编辑</a>
@@ -106,7 +106,8 @@ $(document).ready(function() {
                 method: 'DELETE',
                 success: function(json){
                     if(json.ret == 0){
-                        obj.remove();
+                        location.reload();
+                        //obj.remove();
                     }
                     else{
                         alert(json.msg);

@@ -120,24 +120,7 @@ class StoreController extends Controller
      */
     public function destroy($id)
     {
-        $count = App\Store::where('city_id',$id)->count();
-        if($count > 0){
-            return ['ret'=>1001,'msg'=>'城市下含有店铺,无法删除'];
-        }
-        else{
-            App\City::destroy($id);
-            return ['ret'=>0];
-        }
-    }
-    //
-    public function order(Request $request)
-    {
-        $order_no = json_decode($request->input('order_no'),true);
-        foreach( $order_no as $k=>$v){
-            $store = App\Store::find($v['id']);
-            $store->order_no = $k+1;
-            $store->save();
-        }
-        return ['ret'=>0];
+        App\Store::destroy($id);
+        return ['ret'=>0,'msg'=>''];
     }
 }
